@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <xi:include href="master.html" />
+
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" py:replace="''"/>
+  <title> Definicion de fases </title>
+</head>
+
+<body>
+  <div style="height:0px;"> &nbsp; </div>
+  <div id="definicion_fases-index">
+<<<<<<< HEAD
+    <div style="float:left width: 80%"> <br/>
+      <h3 style="margin-top:1px;"> FASE ${fase.orden} - Tipos de Ítems</h3>
+
+      	<p><a href="/NuevoTipoDeItem/${proyecto.codproyecto}/${fase.codfase}">Crear Nuevo Tipo De Ítem</a></p>
+=======
+    <div style="float:left width: 80%">
+      <h2 style="margin-top:1px;"> Fase "${fase.nombre}"</h2>
+
+      <table class="roles-listado">
+        <thead>
+            <tr>
+	      <th>Codigo</th>
+	      <th>Nombre</th>
+	      <th>Descripcion</th>
+	      <th>Estado</th>
+	      <th>Fecha</th>
+	    </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+	    <th class="fase-codigo">${fase.codfase}</th>
+            <td class="fase-nombre">${fase.nombre}</td>
+	    <td class="fase-descripcion">${fase.descripcion}</td>
+            <td class="fase-estado">${fase.estado}</td>
+	    <td class="fase-fecha">${fase.fecha}</td>
+	  </tr>
+        </tbody>
+	</table>
+
+	<a href="/NuevoTipoDeItem/${proyecto.codproyecto}/${fase.codfase}">Añadir Nuevo Tipo De Ítem</a>
+>>>>>>> 15d55ec2fd13456b8dc61812e944550c8230c666
+	<table class="roles-listado">
+        <thead>
+            <tr>
+	      <th>Editar</th>
+	      <th>Eliminar</th>
+	      <th>Codigo</th>
+	      <th>Nombre</th>
+	      <th>Campos</th>
+            </tr>
+        </thead>
+ 
+        <tbody>
+          <tr py:for="i, tipo in enumerate(fase.tipos_de_items)" class="${i%2 and 'even' or 'odd'}">
+	    <th> <a href="/EditarFase/${proyecto.codproyecto}/${fase.codfase}">Editar</a> </th>
+	    <th> <a href="/EliminarFase/${proyecto.codproyecto}/${fase.codfase}">Eliminar</a></th>
+	    <th class="tipo-codigo">${tipo.codtipoitem}</th>
+            <td class="tipo-nombre">${tipo.nombre}</td>
+	    <td class="tipo-campos"> <py:for each="campo in (tipo.campos)">  -$campo.nombre- </py:for></td>
+	  </tr>
+        </tbody>
+	</table>
+  </div>
+  </div>
+  <div class="clearingdiv" />
+</body>
+</html>

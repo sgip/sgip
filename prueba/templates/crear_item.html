@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC 
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <xi:include href="master.html" />
+
+<head>
+  <meta http-equiv="content-type"
+        content="text/html; charset=UTF-8" />
+  <title>Nuevo Ítem</title>
+</head>
+<body>
+    ${sidebar_top()}
+  <div>
+    <h2>Nuevo Ítem</h2>
+    
+    <form method="post" action="/crearItem/${proyecto_id}/${fase_id}/${tipo_item.codtipoitem}">
+
+	<table>
+	  <tr><td>Nombre: </td><td><input type="textfield" name="nombre" value="${nombre}"/>${tmpl_context.form_errors.get('nombre')}</td></tr>
+	  <tr><td>Complejidad: </td><td><input type="textfield" name="complejidad" value="${complejidad}"/>${tmpl_context.form_errors.get('complejidad')}</td></tr>
+	  <tr><td>Prioridad: </td><td><input type="textfield" name="prioridad" value="${prioridad}"/>${tmpl_context.form_errors.get('prioridad')}</td></tr>
+<<<<<<< HEAD
+	  <py:for each="campo in tipo_item.campos"> 
+	  <tr><td>$campo.nombre: </td><td><input type="textfield" name="$campo.nombre" value="$campo.tmp"/><py:if test="campo.error">$campo.error</py:if></td></tr>
+          </py:for>
+  	</table> <br />
+
+=======
+  	</table> <br />
+
+	<table>
+	   <py:for each="campo in tipo_item.campos"> 
+		<tr><td>$campo.nombre: </td><td><input type="textfield" name="$campo.nombre"/></td></tr>
+           </py:for>
+	</table>
+>>>>>>> 15d55ec2fd13456b8dc61812e944550c8230c666
+	<p>
+        <input type="submit" value="Guardar" />
+	</p>
+
+    </form>
+  </div>
+  <div class="clearingdiv" />
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC 
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <xi:include href="master.html" />
+
+<head>
+  <meta http-equiv="content-type"
+        content="text/html; charset=UTF-8" />
+  <title>Agregar nuevo antecesor</title>
+</head>
+<body>
+    ${sidebar_top()}
+  <div>
+    <h2>Agregar nuevo antecesor</h2>
+    
+    <form method="post" action="/crearNuevoAntecesor/${proyecto_id}/${fase_id}/${item.coditem}">
+
+	<table>
+	  <tr><th> Código</th><td>: ${item.coditem}</td></tr>
+	  <tr><th> Nombre</th><td>: ${item.nombre}</td></tr>
+	  <tr><th> Version</th><td>: ${item.version}</td></tr>
+	  <tr><th> Fase</th><td>: Fase ${item.fase.orden}</td></tr>
+  	</table> <br />
+	
+	<py:if test="not no_antecesores">
+	   <tr><td><h3  align="center">NO ES POSIBLE AGREGAR UN NUEVO ANTECESOR AL ITEM</h3><h4 align="center">Todos los ítems de la fase anterior ya son sus antecesores.</h4></td></tr>
+	</py:if>
+
+	<py:if test="no_antecesores">
+	<!-- ANTECESORES ACTUALES -->
+	<table>
+	 <thead>
+	  <tr><td><label><b><i>Sus Antecesores actuales (Fase ${item.fase.orden-1})</i></b></label></td></tr>
+	 </thead>
+	 <tbody>	
+	  <py:if test="not antecesores">
+	   <tr><td>Ninguno</td></tr>
+	  </py:if>
+	  <py:for each="antecesor in antecesores">
+	   <tr><td>Código: $antecesor</td></tr>
+	  </py:for>
+	 </tbody>
+	</table><br/>
+	
+	<!-- ÍTEMS DE LA FASE ANTERIOR QUE NO SON ANTECESORES -->
+	<table>
+	 <thead>
+	  <tr><td><label><b><i>AGREGAR UN NUEVO ANTECESOR</i></b></label></td></tr>
+	 </thead>
+	 <tbody>	
+	  <py:for each="no_antecesor in no_antecesores">
+	   <tr><td>Código: $no_antecesor.nombre</td>
+	       <td>Versión: $no_antecesor.version</td></tr>
+	  </py:for>
+	 </tbody>
+	</table><br/>
+
+	<label>Seleccione un ítem como nuevo antecesor:</label>
+	<table>
+	<tr><td><select name='antecesor'>
+	    <py:for each="no_antecesor in no_antecesores"> $no_antecesor.nombre
+                <option value="$no_antecesor.coditem">$no_antecesor.nombre v$no_antecesor.version</option>
+            </py:for>
+        </select></td></tr>
+	</table>
+	</py:if>
+
+	<p>
+        <py:if test="not no_antecesores"><input type="submit" name="aceptar" value="Aceptar" /></py:if>
+	<py:if test="no_antecesores"><input type="submit" name="guardar" value="Crear relación" /></py:if></p>
+	
+
+    </form>
+  </div>
+  <div class="clearingdiv" />
+</body>
+</html>

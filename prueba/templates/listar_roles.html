@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <xi:include href="master.html" />
+
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" py:replace="''"/>
+  <title> Listado de Roles </title>
+</head>
+
+<body>
+  <div style="height:0px;"> &nbsp; </div>
+  <div id="rol-index">
+    <div style="float:left width: 80%">
+      <h2 style="margin-top:1px;"> -Listado de Roles-</h2>
+      <a py:if="p" href="/NuevoRol">Nuevo rol</a>
+
+      <p>
+        <tr class="navigation" py:if="currentPage.page_count > 1">
+           <td colspan="4" class="pager">${currentPage.pager()}</td>
+        </tr>
+        <tr class="navigation" py:if="currentPage.item_count == 0">
+            <td colspan="4" class="pager">No se encontraron roles</td>
+        </tr>
+      </p>
+
+      <table class="roles-listado">
+        <thead>
+            <tr>
+	      <th>Editar</th>
+	      <th>Eliminar</th>
+	      <th>Id</th>
+	      <th>Nombre</th>
+	      <th>Descripción</th>
+	      <th>Usuarios</th>
+	      <th>Permisos</th>
+            </tr>
+        </thead>
+
+        <tbody>
+          <tr py:for="rol in roles">
+	    <th> <a py:if="currentPage" href="/EditarRol/${rol.group_id}">Editar</a> </th>
+	    <th> <a href="/EliminarRol/${rol.group_id}">Eliminar</a></th>
+	    <th class="rol-id">${rol.group_id}</th>
+            <td class="rol-name">${rol.group_name}</td>
+            <td class="rol-descripción">${rol.group_description}</td>
+	    <td class="rol-usuarios"><py:for each="user in rol.users">${user.user_name} </py:for></td>
+	    <td class="user-roles"> <py:for each="permiso in rol.permissions">"${permiso.permission_name}" </py:for></td>
+            </tr>
+        </tbody>
+
+    </table>
+  </div>
+  </div>
+  <div class="clearingdiv" />
+</body>
+</html>

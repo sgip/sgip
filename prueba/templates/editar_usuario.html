@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC 
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <xi:include href="master.html" />
+
+<head>
+  <meta http-equiv="content-type"
+        content="text/html; charset=UTF-8" />
+  <title>Editar el usuario: ${usuario.user_name}</title>
+</head>
+<body>
+    ${sidebar_top()}
+  <div>
+    <h2>Editar el usuario: ${usuario.user_name}</h2>
+    
+    <form method="post" action="/editarUsuario/${usuario_id}">
+     <table>
+     <tr><td>*Nombre de usuario: </td><td><input name="username" type="text" value="${usuario.user_name}"/> ${tmpl_context.form_errors.get('username')}</td></tr>
+
+     <tr><td>*Contrasena: </td><td><input name="contrasena" type="password" value="${usuario.user_name}"/> ${tmpl_context.form_errors.get('contrasena')}</td></tr>
+ 
+     <tr><td>*Nombre completo: </td><td><input name="nombre_completo" type="text" value="${usuario.user_fullname}"/> ${tmpl_context.form_errors.get('nombre_completo')}</td></tr>
+
+     <tr><td>*Telefono: </td><td><input name="telefono" type="text" value="${usuario.user_telefono}"/> ${tmpl_context.form_errors.get('telefono')}</td></tr>
+
+     <tr><td>*Direccion: </td><td><input name="direccion" type="text" value="${usuario.user_direccion}"/> ${tmpl_context.form_errors.get('direccion')}</td></tr>
+
+     <tr><td>*Email: </td><td><input name="email" type="text" value="${usuario.email_address}"/> ${tmpl_context.form_errors.get('email')}</td></tr>
+
+     <tr><td>Roles: </td><td>
+	  <select multiple='true' name='roles'>
+            <py:for each="rol in tlr"> $rol.group_name
+              <py:if test="rol in rdu">
+                <option value="$rol.group_id" selected="selected">$rol.group_name</option>
+              </py:if>
+              <py:if test="rol not in rdu">
+                <option value="$rol.group_id">$rol.group_name</option>
+              </py:if>  
+            </py:for>
+           </select></td></tr>
+     </table> <br/>   
+	<p>
+        <input type="submit" value="Guardar cambios" />
+	</p>
+
+    </form>
+  </div>
+  <div class="clearingdiv" />
+</body>
+</html>

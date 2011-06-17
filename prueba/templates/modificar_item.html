@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC 
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <xi:include href="master.html" />
+
+<head>
+  <meta http-equiv="content-type"
+        content="text/html; charset=UTF-8" />
+  <title>Modificar Ítem</title>
+</head>
+<body>
+    ${sidebar_top()}
+  <div>
+    <h2>Modificar Ítem</h2>
+    
+    <form method="post">
+	
+	<table>
+	  <tr><th><label><u>MODIFICAR ATRIBUTOS</u>:</label></th></tr>
+	  <tr><th><a href="/ModificarAtributos/$proyecto_id/$fase_id/$item_id">Modificar atributos</a></th></tr>
+	</table><br/>
+	<table>
+	  <tr><th><label><u>MODIFICAR RELACIONES</u>:</label></th></tr>
+	  <py:if test="fase_orden>1">
+	  <tr><th><label><u>Con la fase anterior</u>:</label></th></tr>
+	  <tr><th><a href="/CrearNuevoAntecesor/$proyecto_id/$fase_id/$item_id">Agregar un nuevo antecesor</a></th></tr>
+	  <tr><th><a href="/EliminarAntecesor/$proyecto_id/$fase_id/$item_id">Eliminar una relación con un antecesor</a></th></tr>
+	  </py:if>
+	  <py:if test="cantfases>fase_orden">
+	  <tr><th><label><u>Con la fase siguiente</u>:</label></th></tr>
+	  <tr><th><a href="/CrearNuevoSucesor/$proyecto_id/$fase_id/$item_id">Agregar un nuevo sucesor</a></th></tr>
+	  <tr><th><a href="/EliminarSucesor/$proyecto_id/$fase_id/$item_id">Eliminar una relación con un sucesor</a></th></tr>
+          </py:if>
+	  <tr><th><label><u>Dentro de la misma fase</u>:</label></th></tr>
+	  <tr><th><a href="/IngresarFase/$proyecto_id/$fase_id">Agregar un nuevo padre</a></th></tr>
+	  <tr><th><a href="/IngresarFase/$proyecto_id/$fase_id">Eliminar un relación con un padre</a></th></tr>
+	  <tr><th><a href="/IngresarFase/$proyecto_id/$fase_id">Agregar un nuevo hijo</a></th></tr>
+	  <tr><th><a href="/IngresarFase/$proyecto_id/$fase_id">Eliminar un relación con un hijo</a></th></tr>
+  	</table> <br />
+    </form>
+  </div>
+  <div class="clearingdiv" />
+</body>
+</html>

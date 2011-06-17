@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <xi:include href="master.html" />
+
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" py:replace="''"/>
+  <title> Historial de ítem </title>
+</head>
+
+<body>
+  ${sidebar_top()}
+  <h5><a href="/ListarProyectos">SALIR DEL PROYECTO</a></h5>
+  <h2>Historial de Ítem</h2>
+  <h3> VERSIONES DEL ÍTEM: </h3>
+
+  <div style="height:0px;"> &nbsp; </div>
+  <div id="definicion_fases-index">
+    <div style="float:left width: 80%">
+     	<py:if test="not historial.versiones">Historial Vacío
+	</py:if>
+	<py:if test="historial.versiones">
+	<table class="roles-listado">
+          <thead>
+            <tr>
+	      <th>Codigo</th>
+	      <th>Nombre</th>
+	      <th>Complejidad</th>
+	      <th>Prioridad</th>
+	      <th>Version</th>
+	      <th>Estado</th>
+	      <th>Fecha</th>
+	    </tr>
+          </thead>
+          <tbody>
+            <py:for each="item in historial.versiones">
+	      <tr>
+		<th class="item-codigo">${item.coditem}</th>	      
+		<td class="item-nombre">${item.nombre}</td>
+		<td class="item-complejidad">${item.complejidad}</td>
+		<td class="item-prioridad">${item.prioridad}</td>
+		<td class="item-version">${item.version}</td>
+		<td class="item-estado">${item.estado}</td>
+		<td class="item-fecha">${item.fecha}</td>
+		<th><a href="/ConsultarItemHistorial/$proyecto_id/$fase_id/${item.coditem}/${item.version}">VER ÍTEM</a></th>
+		<th><a href="/RevertirItem/$proyecto_id/$fase_id/${item.coditem}/${item.version}">REVERTIR</a></th>
+	      </tr>
+	    </py:for>
+          </tbody>
+        </table>
+	</py:if>
+  </div>
+  </div>
+  <div class="clearingdiv" />
+</body>
+</html>

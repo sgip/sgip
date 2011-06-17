@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <xi:include href="master.html" />
+
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" py:replace="''"/>
+  <title> Listado de Proyectos </title>
+</head>
+
+<body>
+  <div style="height:0px;"> &nbsp; </div>
+  <div id="proyecto-index">
+    <div style="float:left width: 80%">
+      <h2 style="margin-top:1px;"> -Listado de Proyectos-</h2>
+      <a py:if="p" href="/NuevoProyecto">Nuevo proyecto</a>
+
+      <p>
+        <tr class="navigation" py:if="currentPage.page_count > 1">
+           <td colspan="4" class="pager">${currentPage.pager()}</td>
+        </tr>
+        <tr class="navigation" py:if="currentPage.item_count == 0">
+            <td colspan="4" class="pager">No se encontraron proyectos</td>
+        </tr>
+      </p>
+
+      <table class="proyectos-listado">
+        <thead>
+            <tr>
+	      <th>Editar</th>
+	      <th>Eliminar</th>
+	      <th>Definir fases</th>
+	      <th>Codigo</th>
+	      <th>Nombre</th>
+	      <th>Estado</th>
+	      <th>Fecha de creacion</th>
+	      <th> </th>
+            </tr>
+        </thead>
+
+        <tbody>
+          <tr py:for="i, proyecto in enumerate(proyectos)" class="${i%2 and 'even' or 'odd'}">
+<<<<<<< HEAD
+	    <th> <a py:if="tg.predicates.has_permission('EditarProyecto'+str(proyecto.codproyecto))" href="/EditarProyecto/${proyecto.codproyecto}">Editar</a> </th>
+=======
+	    <th> <a py:if="currentPage" href="/EditarProyecto/${proyecto.codproyecto}">Editar</a> </th>
+>>>>>>> 15d55ec2fd13456b8dc61812e944550c8230c666
+	    <th> <a href="/EliminarProyecto/${proyecto.codproyecto}">Eliminar</a></th>
+	    <th> <a py:if="proyecto.estado=='definicion'" href="/DefinirFases/${proyecto.codproyecto}">Definir fases</a></th>
+	    <th class="proyecto-codigo">${proyecto.codproyecto}</th>
+            <td class="proyecto-nombre">${proyecto.nombre}</td>
+            <td class="proyecto-estado">${proyecto.estado}</td>
+	    <td class="proyecto-fecha_creacion">${proyecto.fecha}</td>
+	    <td> <a py:if="proyecto.estado=='definicion' and len(proyecto.fases)>1" href="/IniciarProyecto/${proyecto.codproyecto}">INICIAR PROYECTO</a></td>
+	    <td> <a py:if="proyecto.estado!='definicion'" href="/Ingresar_Proyecto/${proyecto.codproyecto}">INGRESAR</a></td>
+	  </tr>
+        </tbody>
+
+    </table>
+  </div>
+  </div>
+  <div class="clearingdiv" />
+</body>
+</html>

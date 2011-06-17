@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC 
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <xi:include href="master.html" />
+
+<head>
+  <meta http-equiv="content-type"
+        content="text/html; charset=UTF-8" />
+  <title>Editar el rol: ${rol.group_name}</title>
+</head>
+<body>
+    ${sidebar_top()}
+  <div>
+    <h2>Editar el rol: ${rol.group_name}</h2>
+    
+    <form method="post" action="/editarRol/${rol_id}">
+
+        <label>Nombre:
+            <input name="nombre" type="text" 
+                   value="${rol.group_name}"/> ${tmpl_context.form_errors.get('nombre')}
+        </label>
+        <br />
+
+        <label>Descripcion:
+            <textarea name="descripcion" rows="10" cols="30">${rol.group_description} </textarea>
+        </label>
+        <br />
+	
+	<label>Permisos:
+	  <select multiple='true' name='permisos'>
+            <py:for each="permiso in tlp"> $permiso.permission_name
+              <py:if test="permiso in pdr">
+                <option value="$permiso.permission_id" selected="selected">$permiso.permission_name</option>
+              </py:if>
+              <py:if test="permiso not in pdr">
+                <option value="$permiso.permission_id">$permiso.permission_name</option>
+              </py:if>  
+            </py:for>
+           </select>
+        </label>
+        <br />
+
+	<p>
+        <input type="submit" value="Guardar cambios" />
+	</p>
+
+    </form>
+  </div>
+  <div class="clearingdiv" />
+</body>
+</html>
+

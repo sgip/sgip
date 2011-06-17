@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC 
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <xi:include href="master.html" />
+
+<head>
+  <meta http-equiv="content-type"
+        content="text/html; charset=UTF-8" />
+  <title>Revisar Ítem</title>
+</head>
+<body>
+    ${sidebar_top()}
+  <div>
+    <h2>Revisar Ítem</h2>
+    
+    <form method="post" action="/revisarItem/${proyecto_id}/${fase_id}/${item.coditem}">
+
+	<table>
+	  <tr><td>Nombre: </td><td><input type="textfield" name="nombre" value="${item.nombre}" disabled="disabled"/>${tmpl_context.form_errors.get('nombre')}</td></tr>
+	  <tr><td>Complejidad: </td><td><input type="textfield" name="complejidad" value="${item.complejidad}" disabled="disabled"/>${tmpl_context.form_errors.get('complejidad')}</td></tr>
+	  <tr><td>Prioridad: </td><td><input type="textfield" name="prioridad" value="${item.prioridad}" disabled="disabled"/>${tmpl_context.form_errors.get('prioridad')}</td></tr>
+  	</table> <br />
+
+	<table>
+	   <py:for each="campo in tipoitem.campos"> 
+		<tr><td>$campo.nombre: </td><td><input type="textfield" name="$campo.nombre"/></td></tr>
+           </py:for>
+	</table> <br/>
+	
+	<label><b>Crear relaciones:</b></label> <br/><br/>
+	<table>
+	<thead>
+	<tr> 
+		<td><label>Ítems de la fase anterior: </label></td>
+		<td><label>Ítems de la fase actual:</label></td>
+		<td><label>Ítems de la fase posterior:</label></td>
+	</tr>
+	</thead>
+	<tbody>	
+	<tr><td><select multiple='true' name='items_izq' disabled="disabled">
+	    <py:for each="item in items_izq"> $item.nombre
+		<py:if test="item.coditem in izq">
+                	<option value="$item.coditem" selected="selected">Nombre:$item.nombre</option>
+		</py:if>
+		<py:if test="item.coditem not in izq">
+			<option value="$item.coditem">Nombre:$item.nombre</option>
+		</py:if>
+            </py:for>
+        </select></td>
+
+	<td><select multiple='true' name='items_act' disabled="disabled">
+            <py:for each="item in items_act"> $item.nombre
+		<py:if test="item.coditem in der">
+                	<option value="$item.coditem" selected="selected">Nombre:$item.nombre</option>
+		</py:if>
+		<py:if test="item.coditem not in der">
+			<option value="$item.coditem">Nombre:$item.nombre</option>
+		</py:if>
+            </py:for>
+         </select></td>
+
+	<td><select multiple='true' name='items_der' disabled="disabled">
+            <py:for each="item in items_der"> $item.nombre
+		<py:if test="item.coditem in der">
+                	<option value="$item.coditem" selected="selected">Nombre:$item.nombre</option>
+		</py:if>
+		<py:if test="item.coditem not in der">
+			<option value="$item.coditem">Nombre:$item.nombre</option>
+		</py:if>
+            </py:for>
+         </select></td></tr>
+	</tbody>
+	</table> <br/>
+
+	<table>
+	<tr>
+	<td><input type="submit" name="modificar" value="Modificar"/></td>
+	<td><input type="submit" name="no_modificar" value="NO Modificar"/></td>
+	</tr>
+	</table>
+
+    </form>
+  </div>
+  <div class="clearingdiv" />
+</body>
+</html>

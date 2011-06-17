@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC 
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <xi:include href="master.html" />
+
+<head>
+  <meta http-equiv="content-type"
+        content="text/html; charset=UTF-8" />
+  <title>Consultar Ítem de Historial</title>
+</head>
+<body>
+    ${sidebar_top()}
+  <div>
+    <h2>Consultar Ítem de Historial</h2>
+    
+    <form method="post">
+	
+	<!--<table>
+	  <tr><th><label><u>Operaciones</u>:</label></th>
+	  <th><t><a href="/Modificar_Item/$proyecto_id/$fase_id/${item.coditem}">Modificar</a></t></th><t></t>
+	  <th><a href="/IngresarFase/$proyecto_id/$fase_id">Eliminar</a></th>
+	  <th><a href="/IngresarFase/$proyecto_id/$fase_id">Revertir</a></th>
+	  <th><a href="/IngresarHistorial/$proyecto_id/$fase_id/${item.coditem}">Ver-historial</a></th></tr>
+  	</table> <br />-->
+
+	<label>1) <b><u>Información General</u></b></label> <br/><br/>
+	<table>
+	  <tr><th> Nombre</th><td>: ${item.nombre}</td></tr>
+	  <tr><th> Versión</th><td>: ${item.version}</td></tr>
+	  <tr><th> Estado</th><td>: ${item.estado}</td></tr>
+	  <tr><th> Complejidad</th><td>: ${item.complejidad}</td></tr>
+	  <tr><th> Prioridad</th><td>: ${item.prioridad}</td></tr>
+	  <tr><th> Fecha-creación</th><td>: ${item.fecha}</td></tr>
+  	</table> <br />
+
+	<label>2) <b><u>Tipo De Ítem</u>:</b></label> ${tipoitem.nombre}<br/><br/>
+	<table>
+	   <py:for each="atributo in atributos">
+		<tr><th><!--$atributo.campo.nombre-->Nombre_Campo:</th><td>: $atributo.valor</td></tr>
+           </py:for>
+	</table> <br/>
+	
+	<label>3) <b><u>Relaciones</u>:</b></label><br/><br/>
+	
+	<!-- ANTECESORES -->
+	<py:if test="fase_orden>1">
+	<table>
+	 <thead>
+	  <tr><td><label><b><i>*Antecesores</i></b></label></td></tr>
+	 </thead>
+	 <tbody>	
+	  <py:if test="not items_izq">
+	   <tr><td>Ninguno</td></tr>
+	  </py:if>
+	  <py:for each="item in items_izq">
+	   <tr><td>Código del ítem: $item.coditem2</td>
+	   <td>Versión: $item.version2</td></tr>
+	  </py:for>
+	 </tbody>
+	</table>
+	</py:if>
+	
+	<!-- SUCESORES -->
+	<py:if test="cantfases>fase_orden">
+	<table>
+	 <thead>
+	  <tr><td><label><b><i>*Sucesores</i></b></label></td></tr>
+	 </thead>
+	 <tbody>	
+	  <py:if test="not items_der">
+	   <tr><td>Ninguno</td></tr>
+	  </py:if>
+	  <py:for each="item in items_der">
+	   <tr><td>Código del ítem: $item.coditem2</td>
+	   <td>Versión: $item.version2</td></tr>
+	  </py:for>
+	 </tbody>
+	</table>
+	</py:if>
+
+	<!-- PADRES -->
+	<table>
+	  <thead>
+	   <tr><td><label><b><i>*Padres</i></b></label></td></tr>
+	  </thead>
+	 <tbody>	
+	  <py:if test="not items_pad">
+	   <tr><td>Ninguno</td></tr>
+	  </py:if>
+	  <py:for each="item in items_pad">
+	   <tr><td>Código del ítem: $item.coditem2</td>
+	   <td>Versión: $item.version2</td></tr>
+	  </py:for>
+	 </tbody>
+	</table>
+	
+	<!-- HIJOS -->
+	<table>
+	 <thead>
+	  <tr><td><label><b><i>*Hijos</i></b></label></td></tr>
+	 </thead>
+	 <tbody>
+	  <py:if test="not items_hij">
+	   <tr><td>Ninguno</td></tr>	
+	  </py:if>
+	  <py:for each="item in items_hij">
+	   <tr><td>Código del ítem: $item.coditem2</td>
+	   <td>Versión: $item.version2</td></tr>
+	  </py:for>
+	 </tbody>
+	</table><br/>
+
+    </form>
+  </div>
+  <div class="clearingdiv" />
+</body>
+</html>

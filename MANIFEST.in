@@ -1,0 +1,4 @@
+recursive-include prueba/public *
+include prueba/public/favicon.ico
+recursive-include prueba/i18n *
+recursive-include prueba/templates *

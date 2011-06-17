@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+  <xi:include href="master.html" />
+
+<head>
+  <meta http-equiv="content-type"
+        content="text/html; charset=UTF-8" />
+  <title>Nuevo Tipo de Item</title>
+</head>
+
+<body>
+${sidebar_top()}
+  <div>
+  <h2>Nuevo Tipo de Ítem</h2>
+  <form method="POST" action="/CamposTipoDeItem/${proyecto.codproyecto}/${fase.codfase}/${tipoitem.codtipoitem}">
+
+    <br/>
+    <label>Nombre del nuevo TipoDeÍtem: </label><b><i>${tipoitem.nombre}</i></b>
+    <br/><br/>
+
+    <label><u>Agregar nuevo atributo</u></label>
+    <table>
+	<tr><td>Nombre del atributo: </td><td><input name="nombre" type="text" value=""/> ${tmpl_context.form_errors.get('nombre')}</td></tr>
+	<tr><td>Tipo del atributo  : </td><td>
+	    <select name='tipo'>
+            	<option value="Integer">Numérico</option>
+		<option value="String">Texto</option>
+		<option value="Date">Fecha</option>
+	    </select>
+	</td></tr>
+    </table><br/>
+    <input type="submit" value="Añadir atributo" />
+  </form><br/>
+
+  <label><u>Atributos del tipo de ítem:</u></label>
+    <table>
+        <thead><tr>
+	    <th>Nombre</th>
+	    <th>Tipo</th>
+        </tr></thead>
+        <tbody>
+          <tr py:for="i, campo in enumerate(campos)">
+	    <td class="campo-nombre">${campo.nombre}</td>
+            <td class="campo-tipo">${campo.tipo}</td>
+	  </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

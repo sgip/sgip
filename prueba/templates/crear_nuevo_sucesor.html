@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC 
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <xi:include href="master.html" />
+
+<head>
+  <meta http-equiv="content-type"
+        content="text/html; charset=UTF-8" />
+  <title>Agregar nuevo sucesor</title>
+</head>
+<body>
+    ${sidebar_top()}
+  <div>
+    <h2>Agregar nuevo sucesor</h2>
+    
+    <form method="post" action="/crearNuevoSucesor/${proyecto_id}/${fase_id}/${item.coditem}">
+
+	<table>
+	  <tr><th> Código</th><td>: ${item.coditem}</td></tr>
+	  <tr><th> Nombre</th><td>: ${item.nombre}</td></tr>
+	  <tr><th> Version</th><td>: ${item.version}</td></tr>
+	  <tr><th> Fase</th><td>: Fase ${item.fase.orden}</td></tr>
+  	</table> <br />
+	
+	<py:if test="not no_sucesores">
+	   <tr><td><h3  align="center">NO ES POSIBLE AGREGAR UN NUEVO SUCESOR AL ITEM</h3><h4 align="center">Todos los ítems de la fase posterior ya son sus sucesores.</h4></td></tr>
+	</py:if>
+
+	<py:if test="no_sucesores">
+	<!-- SUCESORES ACTUALES -->
+	<table>
+	 <thead>
+	  <tr><td><label><b><i>Sus sucesores actuales (Fase ${item.fase.orden+1})</i></b></label></td></tr>
+	 </thead>
+	 <tbody>	
+	  <py:if test="not sucesores">
+	   <tr><td>Ninguno</td></tr>
+	  </py:if>
+	  <py:for each="sucesor in sucesores">
+	   <tr><td>Código: $sucesor</td></tr>
+	  </py:for>
+	 </tbody>
+	</table><br/>
+	
+	<!-- ÍTEMS DE LA FASE POSTERIOR QUE NO SON SUCESORES -->
+	<table>
+	 <thead>
+	  <tr><td><label><b><i>AGREGAR UN NUEVO SUCESOR</i></b></label></td></tr>
+	 </thead>
+	 <tbody>	
+	  <py:for each="no_sucesor in no_sucesores">
+	   <tr><td>Código: $no_sucesor.nombre</td>
+	       <td>Versión: $no_sucesor.version</td></tr>
+	  </py:for>
+	 </tbody>
+	</table><br/>
+
+	<label>Seleccione un ítem como nuevo sucesor:</label>
+	<table>
+	<tr><td><select name='sucesor'>
+	    <py:for each="no_sucesor in no_sucesores"> $no_sucesor.nombre
+                <option value="$no_sucesor.coditem">$no_sucesor.nombre v$no_sucesor.version</option>
+            </py:for>
+        </select></td></tr>
+	</table>
+	</py:if>
+
+	<br/><br/>
+	<p>
+        <py:if test="not no_sucesores"><input type="submit" name="aceptar" value="Aceptar" /></py:if>
+	<py:if test="no_sucesores"><input type="submit" name="guardar" value="Crear relación" /></py:if></p>
+
+    </form>
+  </div>
+  <div class="clearingdiv" />
+</body>
+</html>

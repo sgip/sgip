@@ -1,0 +1,95 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+  <xi:include href="master.html" />
+<<<<<<< HEAD
+
+  <script type="text/javascript">
+       var index=0;
+       function cargar(texto){
+               alert("texto es" + texto);                
+               var opcion = document.createElement('option');
+               var select = document.getElementById('opciones');
+
+               opcion.text =  texto;
+               opcion.value = texto;
+               
+               select.add(opcion, null);
+               select.options[index].selected=true;                
+               index++;
+       }
+  </script>
+
+=======
+  <script>
+	var count1 = 0;
+
+ 	function appendOptionLast(num,texto)
+	{
+		var elOptNew = document.createElement('option');
+		elOptNew.text = texto;
+		elOptNew.value = texto;
+		var elSel = document.getElementById('atributos');
+
+		try {
+			elSel.add(elOptNew, null); // standards compliant; doesn't work in IE
+		}
+		catch(ex) {
+			elSel.add(elOptNew); // IE only
+		}
+	}
+  </script>
+>>>>>>> 15d55ec2fd13456b8dc61812e944550c8230c666
+<head>
+  <meta http-equiv="content-type"
+        content="text/html; charset=UTF-8" />
+  <title>Nuevo Tipo de Item</title>
+</head>
+
+<body>
+${sidebar_top()}
+  <div>
+  <h2>Nuevo Tipo de Ítem</h2>
+<<<<<<< HEAD
+  <form method="POST" action="/crearTipoDeItem/${proyecto.codproyecto}/${fase.codfase}">
+
+    <table>
+    <tr><td>Seleccione un nombre para el tipo de ítem a crear:</td><td></td></tr>
+    </table><br/>
+
+    <table>
+    <tr><td>Nombre: </td><td><input type="textfield" name="nombre" value="${nombre}"/>${tmpl_context.form_errors.get('nombre')}</td></tr>  
+    </table><br/><br/>
+
+    <input type="submit" value="Añadir atributo" />
+    <input type="button" value="Cancelar" />
+    <input type="text" name="anadir" id="text" value="Añadir"/>
+
+    <input type="button" value="Añadir" id="anadir" onClick="cargar(${'text.value'})"/>
+    
+    <tr><td>Atributos: </td><td>
+	  <select multiple='multiple' id='opciones' name="atributos" disabled="disabled">
+          </select></td></tr>    
+  </form>
+ 
+=======
+  <form method="POST" action="/crearTipoDeItem">
+    <table>
+    <tr><td>Nombre: </td><td><input type="textfield" name="nombre"/></td></tr>
+  
+    </table><br/>
+    <input type="submit" value="Guardar"/>
+
+	<input type="text" name="anadir" value="Añadir"/>
+
+    <input type="button" value="Añadir" onClick="appendOptionLast(count1++,this.form.anadir.value);"/>
+    
+    <tr><td>Atributos: </td><td>
+	  <select multiple='true' id='atributos' name="atributos">
+          </select></td></tr>
+
+  </form>
+>>>>>>> 15d55ec2fd13456b8dc61812e944550c8230c666
+</div>
+</body>
+</html>

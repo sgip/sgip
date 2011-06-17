@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <xi:include href="master.html" />
+
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" py:replace="''"/>
+  <title> Definicion de fases </title>
+</head>
+
+<body>
+  <div style="height:0px;"> &nbsp; </div>
+  <div id="definicion_fases-index">
+    <div style="float:left width: 80%">
+      <h2 style="margin-top:1px;"> Proyecto "${proyecto.nombre}"</h2>
+      
+      <table class="roles-listado">
+        <thead>
+            <tr>
+	      <th>Codigo</th>
+	      <th>Nombre</th>
+	      <th>Estado</th>
+	      <th>Fecha</th>
+	    </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+	    <th class="proyecto-codigo">${proyecto.codproyecto}</th>
+            <td class="proyecto-nombre">${proyecto.nombre}</td>
+            <td class="proyecto-estado">${proyecto.estado}</td>
+	    <td class="proyecto-fecha">${proyecto.fecha}</td>
+	  </tr>
+        </tbody>
+	</table>
+	
+	<table class="roles-listado">
+        <thead>
+            <tr>
+	      <th py:for="i, fase in enumerate(fases)"> </th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr class="fases">
+	    <th py:for="i, fase in enumerate(fases)" class="fase-nombre">${fase.nombre}</th>	    
+	  </tr>
+        </tbody>
+        <tbody>
+          <tr class="fasess">
+	    <td py:for="i, fase in enumerate(fases)"><a href="/TipoDeItem/${proyecto.codproyecto}/${fase.codfase}">Tipos de Ítems</a></td>
+	  </tr>
+        </tbody>
+        <tbody>
+          <tr class="fasess">
+	    <td py:for="i, fase in enumerate(fases)"><a href="/ElegirTipoItem/${proyecto.codproyecto}/${fase.codfase}">Crear ítem</a></td>
+	  </tr>
+        </tbody>
+	<tbody>
+          <tr py:for="i, fase in enumerate(fases)" class="fasess">
+	    <py:for each="item in fase.items">
+	    <td><a href="/ElegirTipoItem/${proyecto.codproyecto}/${fase.codfase}">Editar</a></td>
+	    <td><a href="/ElegirTipoItem/${proyecto.codproyecto}/${fase.codfase}">Eliminar</a></td>
+	    <td>$item.nombre</td>
+	    </py:for>
+	  </tr>
+        </tbody>
+	</table>
+  </div>
+  </div>
+  <div class="clearingdiv" />
+</body>
+</html>

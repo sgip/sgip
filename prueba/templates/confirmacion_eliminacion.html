@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC 
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <xi:include href="master.html" />
+
+<head>
+  <meta http-equiv="content-type"
+        content="text/html; charset=UTF-8" />
+  <title>Eliminar ítem</title>
+</head>
+<body>
+    ${sidebar_top()}
+  <div>
+    <h2>Eliminar ítem</h2>
+    
+    <form method="post" action="/eliminarItem/${proyecto_id}/${fase_id}/${item.coditem}">
+
+	<table>
+        <tr><td><h3  align="center">¿Está seguro de que desea eliminar el ítem <i>"${item.nombre}"</i> ?</h3></td></tr>
+	</table>
+
+	<p>
+        <input type="submit" name="aceptar" value="Aceptar" />
+	<input type="submit" name="guardar" value="Cancelar" /></p>
+
+    </form>
+  </div>
+  <div class="clearingdiv" />
+</body>
+</html>

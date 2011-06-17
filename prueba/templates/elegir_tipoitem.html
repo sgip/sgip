@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC 
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <xi:include href="master.html" />
+
+<head>
+  <meta http-equiv="content-type"
+        content="text/html; charset=UTF-8" />
+  <title>Nuevo Ítem</title>
+</head>
+<body>
+    ${sidebar_top()}
+  <div>
+    <h2>Nuevo Ítem</h2>
+    
+<<<<<<< HEAD
+    <form method="post" action="/NuevoItem/${proyecto_id}/${fase_id}/">
+	  <label>Seleccione un Tipo De Ítem y dé click en "Aceptar":</label> <br/> <br/>
+	  <select name='tipoitem_id' width="300" style="width: 300px">
+=======
+    <form method="post" action="/NuevoItem/${proyecto_id}/${fase_id}">
+	  <label>Seleccione un Tipo De Ítem y dé click en "Aceptar":</label> <br/> <br/>
+	  <select name='tipo_item' width="300" style="width: 300px">
+>>>>>>> 15d55ec2fd13456b8dc61812e944550c8230c666
+            <py:for each="tipo in tipos_item"> $tipo.nombre
+                <option value="$tipo.codtipoitem">$tipo.nombre</option> 
+            </py:for>
+           </select> <br/> <br/>
+
+	<p>
+        <input type="submit" value="Aceptar" />
+	</p>
+
+    </form>
+  </div>
+  <div class="clearingdiv" />
+</body>
+</html>

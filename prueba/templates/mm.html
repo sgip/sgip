@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+  <xi:include href="master.html" />
+  <script type="text/javascript">
+	var index=0;
+	$("#anadir").click(function(e){
+	var opcion = document.createElement('option');
+	opcion.text =  $("#texto").value;
+	opcion.value = $("#texto").value;
+	try{
+		$("#atributos").add(opcion,null);
+		$("#atributos").Items[index].select();
+	}catch{
+		$("#atributos").add(opcion);
+		$("#atributos").Items[index].select();
+	}
+	index++;
+	}
+
+  </script>
+<head>
+  <meta http-equiv="content-type"
+        content="text/html; charset=UTF-8" />
+  <title>Nuevo Tipo de Item</title>
+</head>
+
+<body>
+${sidebar_top()}
+  <div>
+  <h2>Nuevo Tipo de Ítem</h2>
+  <form method="POST" action="/crearTipoDeItem/${proyecto.codproyecto}/${fase.codfase}">
+    <table>
+    <tr><td>Nombre: </td><td><input type="textfield" name="nombre"/></td></tr>
+      
+    </table><br/>
+    <a href="/NuevoTipoDeItem/${proyecto.codproyecto}/${fase.codfase}">Añadir</a><br/>
+    <input type="submit" value="Guardar"/>
+
+    <input type="text" name="anadir" id="texto" value="Añadir"/>
+
+    <input type="button" value="Añadir" id="anadir" onClick="appendOptionLast(count1++,this.form.anadir.value);"/>
+    
+    <tr><td>Atributos: </td><td>
+	  <select multiple='multiple' id='atributos' name="atributos">
+          </select></td></tr>    
+  </form>
+</div>
+</body>
+</html>

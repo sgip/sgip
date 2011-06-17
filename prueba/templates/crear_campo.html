@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC 
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      >
+    <form method="post" action="/ListarProyectos">
+	<table>
+	     <tr><td>Nombre del atributo: </td><td><input name="nombre" type="text" value=""/> ${tmpl_context.form_errors.get('nombre')}</td></tr>
+	     <tr><td>Tipo del atributo  : </td><td>
+	  	<select name='tipo'>
+                	<option value="Integer">Integer</option>
+			<option value="String">String</option>
+			<option value="Date">Date</option>
+		</select>
+	     </td></tr>
+	</table>
+	
+	<p>
+        <input type="submit" value="Añadir atributo" />
+	</p>
+
+    </form>
+</html>

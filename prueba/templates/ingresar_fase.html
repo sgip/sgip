@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <xi:include href="master.html" />
+
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" py:replace="''"/>
+  <title> Fases </title>
+</head>
+
+<body>
+<<<<<<< HEAD
+  <h5><a href="/ListarProyectos">SALIR DEL PROYECTO</a></h5>
+  <div style="height:0px;"> &nbsp; </div>
+  <div id="definicion_fases-index">
+    <div style="float:left width: 80%">
+      <h2 style="margin-top:1px;"> NOMBRE: ${proyecto.nombre}</h2>
+=======
+  <div style="height:0px;"> &nbsp; </div>
+  <div id="definicion_fases-index">
+    <div style="float:left width: 80%">
+      <h2 style="margin-top:1px;"> Proyecto "${proyecto.nombre}"</h2>
+>>>>>>> 15d55ec2fd13456b8dc61812e944550c8230c666
+      
+      <table class="roles-listado">
+        <thead>
+            <tr>
+	      <th>Codigo</th>
+	      <th>Nombre</th>
+	      <th>Estado</th>
+	      <th>Fecha</th>
+	    </tr>
+        </thead>
+        <tbody>
+          <tr>
+	    <th class="proyecto-codigo">${proyecto.codproyecto}</th>
+            <td class="proyecto-nombre">${proyecto.nombre}</td>
+            <td class="proyecto-estado">${proyecto.estado}</td>
+	    <td class="proyecto-fecha">${proyecto.fecha}</td>
+	  </tr>
+        </tbody>
+<<<<<<< HEAD
+	</table>
+
+	<h3>FASES DEL PROYECTO: </h3>
+	<table class="roles-listado">
+          <tbody>
+            <py:for each="fase in fases">
+	      <tr><a href="/IngresarFase/${proyecto.codproyecto}/$fase.codfase">Fase $fase.orden</a>
+	      </tr>
+	    </py:for>
+          </tbody>
+        </table> <br/> <br/>
+
+	<h2 style="margin-top:1px;"> ESTAMOS EN LA FASE ${fase.orden}</h2>
+=======
+	</table><br/>
+
+	<h3 style="margin-top:1px;"> FASE "${fase.nombre}"</h3>
+>>>>>>> 15d55ec2fd13456b8dc61812e944550c8230c666
+        <table class="roles-listado">
+        <thead>
+            <tr>
+	      <th>Codigo     </th>
+	      <th>Nombre     </th>
+	      <th>Descripcion</th>
+	      <th>Estado     </th>
+	      <th>Fecha      </th>
+	    </tr>
+        </thead>
+        <tbody>
+          <tr>
+	    <th class="fase-codigo">${fase.codfase}</th>
+            <td class="fase-nombre">${fase.nombre}</td>
+	    <td class="fase-descripcion">${fase.descripcion}</td>
+            <td class="fase-estado">${fase.estado}</td>
+	    <td class="fase-fecha">${fase.fecha}</td>
+	  </tr>
+        </tbody>
+<<<<<<< HEAD
+	</table> <br/>
+	
+	<a href="/TipoDeItem/${proyecto.codproyecto}/${fase.codfase}">Tipos de Ítem de la Fase</a>
+	
+	<h3>ÍTEMS: </h3>
+	<th><a href="/ElegirTipoItem/${proyecto.codproyecto}/${fase.codfase}">Nuevo Ítem</a></th>
+	<th><a href="/ListarItemsEliminados/${proyecto.codproyecto}/${fase.codfase}"> Ítems eliminados</a></th>
+=======
+	</table>
+	
+	<h3>ÍTEMS: </h3>
+	<th><a href="/ElegirTipoItem/${proyecto.codproyecto}/${fase.codfase}">Nuevo Ítem</a></th>
+>>>>>>> 15d55ec2fd13456b8dc61812e944550c8230c666
+	<table class="roles-listado">
+          <thead>
+            <tr>
+	      <th>Codigo</th>
+	      <th>Nombre</th>
+	      <th>Complejidad</th>
+	      <th>Prioridad</th>
+	      <th>Version</th>
+	      <th>Estado</th>
+	      <th>Fecha</th>
+	    </tr>
+          </thead>
+          <tbody>
+            <py:for each="item in items">
+	      <tr>
+		<th class="item-codigo">${item.coditem}</th>	      
+		<td class="item-nombre">${item.nombre}</td>
+		<td class="item-complejidad">${item.complejidad}</td>
+		<td class="item-prioridad">${item.prioridad}</td>
+		<td class="item-version">${item.version}</td>
+		<td class="item-estado">${item.estado}</td>
+		<td class="item-fecha">${item.fecha}</td>
+<<<<<<< HEAD
+		<th><a href="/ConsultarItem/${proyecto.codproyecto}/${fase.codfase}/${item.coditem}">VER ÍTEM</a></th>
+	        <th py:if="item.estado!='revision' and item.estado!='espera'"><a href="/ModificarItem/${proyecto.codproyecto}/${fase.codfase}/${item.coditem}">Modificar</a></th>
+		<th py:if="item.estado=='revision'"><a href="/RevisarItem/${proyecto.codproyecto}/${fase.codfase}/${item.coditem}">REVISION</a></th>
+		<th py:if="item.estado=='espera'">EN ESPERA DE REVISIONES</th>
+=======
+	        <th><a href="/ModificarItem/${proyecto.codproyecto}/${fase.codfase}/${item.coditem}">Modificar</a></th>
+>>>>>>> 15d55ec2fd13456b8dc61812e944550c8230c666
+	      </tr>
+	    </py:for>
+          </tbody>
+        </table>
+  </div>
+  </div>
+  <div class="clearingdiv" />
+</body>
+</html>
